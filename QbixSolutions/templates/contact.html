@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - Free Consultation | Qbix Solutions{% endblock %}
+
+{% block meta_description %}Contact Qbix Solutions for web development services. Free consultation, fast response within 24 hours. Call +91-90165-92958 or email ravibhatasana@gmail.com. Serving India & international clients.{% endblock %}
+
+{% block meta_keywords %}contact web development company, free consultation India, web development quote, Django developer contact, Python development inquiry, hire web developers India{% endblock %}
+
+{% block extra_css %}
+<!-- BreadcrumbList Schema for Contact Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://qbixsolution.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": "https://qbixsolution.com/contact/"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Contact Qbix Solutions - Get Free Web Development Consultation</h1>
+        <p class="page-description">Call +91 9016592958 or email us. Fast response within 24 hours. Serving India & international clients.</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info-box">
+                <h2>Contact Information</h2>
+                <p>Have a question or want to work together? Fill out the form and we'll get back to you as soon as possible.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-detail-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Address</h4>
+                            <p>Morbi, Gujarat<br>India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:ravibhatasana@gmail.com">ravibhatasana@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+919016592958">+91 90165 92958</a></p>
+                            <p>Mon-Sat: 09:00 AM – 06:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Business Hours</h4>
+                            <p>Monday - Saturday: 09:00 AM – 06:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-links-large">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form-box">
+                <h3>Send Us a Message</h3>
+                <form method="post" class="contact-form" id="contactForm">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="form-errors">
+                        {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                        <p class="error">{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Your Name *</label>
+                        {{ form.name }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Your Email *</label>
+                        {{ form.email }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.phone.id_for_label }}">Your Phone *</label>
+                        {{ form.phone }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.service.id_for_label }}">Service of Interest *</label>
+                        {{ form.service }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}">Your Message *</label>
+                        {{ form.message }}
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section">
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118143.68239168163!2d70.73543842433867!3d22.81766584469614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39598e06ec56d711%3A0x7ffbfc77948b3879!2sMorbi%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1732017000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Qbix Solutions Location - Morbi, Gujarat, India">
+        </iframe>
+    </div>
+</section>
+{% endblock %}

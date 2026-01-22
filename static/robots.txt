@@ -1,0 +1,13 @@
+# Robots.txt for Qbix Solutions
+# https://qbixsolution.com
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /static/admin/
+
+# Crawl-delay (optional, helps reduce server load)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://qbixsolution.com/sitemap.xml

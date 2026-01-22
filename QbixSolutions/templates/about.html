@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Qbix Solution - Expert Web Development Team India | Django & Python Specialists{% endblock %}
+
+{% block meta_description %}Meet the expert team behind Qbix Solution. Professional Django & Python developers with 50+ successful projects. Learn about our mission, vision & values driving digital excellence in India & globally.{% endblock %}
+
+{% block meta_keywords %}about Qbix Solution, web development team India, Django developers India, Python development company, expert developers, web development agency team, professional developers India{% endblock %}
+
+{% block extra_css %}
+<!-- BreadcrumbList Schema for About Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://qbixsolution.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://qbixsolution.com/about/"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">About Qbix Solution - Expert Web Development Company in India</h1>
+        <p class="page-description">Leading Django & Python development agency with 50+ successful projects serving India & international clients</p>
+    </div>
+</section>
+
+<!-- Vision & Mission -->
+<section class="about-vision section">
+    <div class="container">
+        <div class="vision-content">
+            <div class="vision-text">
+                <h2 class="section-title">Our Vision</h2>
+                <p>
+                    To become a leading global web development agency known for excellence in technology, long-term client partnerships, and future-ready software solutions.
+                </p>
+                <h2 class="section-title" style="margin-top: 2rem;">Our Mission</h2>
+                <p>
+                    To craft innovative, scalable, and user-centric digital solutions that help businesses grow, automate, and succeed in the modern digital era.
+                </p>
+                <p>
+                    We are a modern web development agency dedicated to building high-performance digital solutions that empower businesses to scale. From custom websites to advanced SaaS platforms, we deliver clean, secure, and optimized applications tailored to your exact requirements. With expertise in full-stack development, backend engineering, cloud integration, and scalable architectures, our team ensures reliable, long-term digital growth for clients across industries.
+                </p>
+            </div>
+            <div class="vision-image">
+                <div class="vision-placeholder">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Company Values -->
+<section class="company-values section bg-light">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Our Core Values</h2>
+            <p class="section-description">The principles that guide everything we do</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="value-title">Innovation</h3>
+                <p class="value-description">
+                    We continuously adapt, experiment, and bring new ideas to life with cutting-edge technologies and creative problem-solving approaches.
+                </p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="value-title">Quality</h3>
+                <p class="value-description">
+                    Every line of code is engineered with precision and long-term reliability. We maintain the highest standards in everything we build.
+                </p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="value-title">Transparency</h3>
+                <p class="value-description">
+                    Honest communication and ethical practices define how we work. We believe in building trust through openness.
+                </p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="value-title">Customer Focus</h3>
+                <p class="value-description">
+                    Your success is our priority. We tailor every solution to meet your specific business needs and objectives.
+                </p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="value-title">Teamwork</h3>
+                <p class="value-description">
+                    Collaborative problem-solving drives our best results. We work together to achieve exceptional outcomes.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Meet Our Expert Team</h2>
+            <p class="section-description">
+                A diverse group of talented professionals dedicated to your success
+            </p>
+        </div>
+        <div class="team-grid">
+            {% for member in team_members %}
+            <div class="team-card">
+                <div class="team-image">
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" alt="{{ member.name }}">
+                    {% else %}
+                    <div class="team-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">{{ member.name }}</h3>
+                    <p class="team-position">{{ member.position }}</p>
+                    <p class="team-bio">{{ member.bio|truncatewords:20 }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Team Members -->
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="{% static 'images/Profile_Picture.png' %}" alt="Ravi Bhatasana">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Ravi Bhatasana</h3>
+                    <p class="team-position">Leadership & Full-Stack Developer</p>
+                    <p class="team-bio">Ravi is a versatile full-stack developer and the driving force behind the company. With expertise across frontend, backend, and DevOps, he ensures quality, consistency, and innovation in every project. His leadership blends technical excellence with strong problem-solving and strategic planning.</p>
+                    <div class="team-social" style="margin-top: 1rem;">
+                        <a href="https://linkedin.com/in/ravi-bhatasana-179273340" target="_blank" rel="noopener" aria-label="LinkedIn" style="color: var(--primary-color); margin-right: 1rem;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <div class="team-placeholder"><i class="fas fa-user"></i></div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Tufel Chhachhar</h3>
+                    <p class="team-position">Full-Stack Developer</p>
+                    <p class="team-bio">Tufel specializes in building smooth, dynamic, and feature-rich web applications. His strengths lie in API development, UI/UX implementation, and product optimization. He brings clean coding standards and strong analytical skills to every project.</p>
+                    <div class="team-social" style="margin-top: 1rem;">
+                        <a href="https://linkedin.com/in/chhachhar-tufel-148164253" target="_blank" rel="noopener" aria-label="LinkedIn" style="color: var(--primary-color); margin-right: 1rem;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="{% static 'images/montu_profile01.webp' %}" alt="Montu Loriya">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Montu Loriya</h3>
+                    <p class="team-position">Backend Developer & Tester</p>
+                    <p class="team-bio">Montu is responsible for backend architecture, API logic, and application stability. With a deep focus on testing and debugging, he ensures every system performs with speed, security, and reliability.</p>
+                    <div class="team-social" style="margin-top: 1rem;">
+                        <a href="https://linkedin.com/in/montu-loriya-b09446363" target="_blank" rel="noopener" aria-label="LinkedIn" style="color: var(--primary-color); margin-right: 1rem;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-choose section bg-light">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <p class="section-description">What sets us apart from the competition</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-number">01</div>
+                <h3 class="feature-title">Expert Team</h3>
+                <p class="feature-description">
+                    Strong full-stack and backend development capabilities with proven expertise across multiple domains and modern technologies.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">02</div>
+                <h3 class="feature-title">Custom-Built Solutions</h3>
+                <p class="feature-description">
+                    Every solution is tailored to your specific business needs and requirements - not generic templates.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">03</div>
+                <h3 class="feature-title">Clean & Secure Code</h3>
+                <p class="feature-description">
+                    Scalable and secure coding practices ensure long-term reliability, easy maintenance, and robust performance.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">04</div>
+                <h3 class="feature-title">On-Time Delivery</h3>
+                <p class="feature-description">
+                    Complete project management ensures timely delivery without compromising on quality standards.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">05</div>
+                <h3 class="feature-title">Responsive Support</h3>
+                <p class="feature-description">
+                    Long-term maintenance and dedicated support to keep your applications running smoothly 24/7.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">06</div>
+                <h3 class="feature-title">Multi-Domain Experience</h3>
+                <p class="feature-description">
+                    Experience across multiple industries and technology stacks enables comprehensive, well-rounded solutions.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">07</div>
+                <h3 class="feature-title">Proven Portfolio</h3>
+                <p class="feature-description">
+                    Real, live client projects demonstrating our capability, commitment to excellence, and track record of success.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section section">
+    <div class="container">
+        <div class="cta-content text-center">
+            <h2 class="cta-title">Ready to Work With Us?</h2>
+            <p class="cta-description">
+                Let's discuss how we can help transform your business with innovative digital solutions
+            </p>
+            <div class="faq-cta-buttons">
+                <a href="tel:+919016592958" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call +91 9016592958
+                </a>
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Send Message
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

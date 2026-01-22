@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Portfolio - 50+ Successful Projects | Qbix Solutions{% endblock %}
+
+{% block meta_description %}Explore our portfolio of 50+ successful web development projects. Django applications, SaaS platforms, e-commerce sites, custom websites for startups, SMBs & enterprises across India & globally.{% endblock %}
+
+{% block meta_keywords %}web development portfolio, Django projects, Python applications, SaaS platforms, e-commerce websites, successful projects India, web development case studies{% endblock %}
+
+{% block extra_css %}
+<!-- Portfolio Styles -->
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Portfolio - 50+ Successful Web Development Projects Delivered</h1>
+        <p class="page-description">Django applications, SaaS platforms, e-commerce sites & custom websites for startups, SMBs & enterprises worldwide</p>
+    </div>
+</section>
+
+<!-- Portfolio Filter -->
+<section class="portfolio-filter-section">
+    <div class="container">
+        <div class="portfolio-filters">
+            <a href="{% url 'QbixSolutions:portfolio' %}" class="filter-btn {% if not selected_category %}active{% endif %}">All Projects</a>
+            {% for category_code, category_name in categories %}
+            <a href="?category={{ category_code }}" class="filter-btn {% if selected_category == category_code %}active{% endif %}">{{ category_name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section class="portfolio-grid-section section">
+    <div class="container">
+        <div class="portfolio-grid-full">
+            {% for item in portfolio_items %}
+            <div class="portfolio-item-full">
+                <div class="portfolio-image">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
+                    {% else %}
+                    <div class="portfolio-placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">{{ item.get_category_display }}</span>
+                    <h3 class="portfolio-title">{{ item.title }}</h3>
+                    <p class="portfolio-description">{{ item.description|truncatewords:20 }}</p>
+                    <p class="portfolio-tech"><strong>Technologies:</strong> {{ item.technologies }}</p>
+                    <a href="{% url 'QbixSolutions:portfolio_detail' item.slug %}" class="btn btn-outline">View Project</a>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center" style="grid-column: 1/-1;">No projects found. Check back soon!</p>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if portfolio_items.has_other_pages %}
+        <div class="pagination">
+            {% if portfolio_items.has_previous %}
+            <a href="?page={{ portfolio_items.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link">&laquo; Previous</a>
+            {% endif %}
+            
+            {% for num in portfolio_items.paginator.page_range %}
+            <a href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link {% if portfolio_items.number == num %}active{% endif %}">{{ num }}</a>
+            {% endfor %}
+            
+            {% if portfolio_items.has_next %}
+            <a href="?page={{ portfolio_items.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link">Next &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

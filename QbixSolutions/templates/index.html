@@ -1,0 +1,1014 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Qbix Solutions by Ravi Bhatasana | Best Web Development Company India{% endblock %}
+
+{% block meta_description %}Qbix Solutions - Founded by Ravi Bhatasana. Leading web development company in India with expert Django & Python developers. Custom websites, SaaS platforms & mobile apps. Fast delivery, 50+ projects delivered globally.{% endblock %}
+
+{% block meta_keywords %}Ravi Bhatasana, Qbix Solutions Ravi Bhatasana, web development company India, Django developer India, Python developer India, SaaS development company, Ravi Bhatasana CTO, full-stack developer Gujarat, affordable website development, best web developer for startups{% endblock %}
+
+{% block extra_css %}
+<!-- BreadcrumbList Schema for Homepage -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://qbixsolution.com/"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-background">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">
+                Top Web Development Company in India - Django, Python & SaaS Experts
+            </h1>
+            <p class="hero-subtitle animate-fade-in-delay">
+                Leading web development agency serving India & international clients. Expert Django & Python developers building high-performance custom websites, SaaS platforms, e-commerce solutions & mobile apps. Fast delivery, affordable pricing, 50+ projects delivered worldwide.
+            </p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="#consultation" class="btn btn-primary btn-lg ripple-effect glow-on-hover">Get Free Consultation</a>
+                <a href="{% url 'QbixSolutions:portfolio' %}" class="btn btn-outline btn-lg ripple-effect">View Our Work</a>
+            </div>
+            <div class="hero-stats animate-fade-in-delay-3">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="50" data-suffix="+">0</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="30" data-suffix="+">0</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3" data-suffix="+">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us section" id="why-choose">
+    <div class="container">
+        <div class="section-header text-center scroll-reveal">
+            <h2 class="section-title">Why Choose Qbix Solutions?</h2>
+            <p class="section-description">
+                We are committed to delivering exceptional results that drive your business forward
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card scroll-reveal shadow-hover">
+                <div class="feature-icon icon-bounce">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="feature-title">Expert Team</h3>
+                <p class="feature-description">
+                    Strong full-stack and backend development capabilities with proven expertise across multiple domains and technologies.
+                </p>
+            </div>
+            <div class="feature-card scroll-reveal shadow-hover">
+                <div class="feature-icon icon-bounce">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="feature-title">Custom Solutions</h3>
+                <p class="feature-description">
+                    Tailored solutions built specifically for your business needs, not one-size-fits-all templates.
+                </p>
+            </div>
+            <div class="feature-card scroll-reveal shadow-hover">
+                <div class="feature-icon icon-bounce">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="feature-title">Clean Code</h3>
+                <p class="feature-description">
+                    Scalable and secure coding practices ensuring long-term reliability and easy maintenance.
+                </p>
+            </div>
+            <div class="feature-card scroll-reveal shadow-hover">
+                <div class="feature-icon icon-bounce">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">On-Time Delivery</h3>
+                <p class="feature-description">
+                    Complete project management ensuring timely delivery without compromising on quality.
+                </p>
+            </div>
+            <div class="feature-card scroll-reveal shadow-hover">
+                <div class="feature-icon icon-bounce">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">Responsive Support</h3>
+                <p class="feature-description">
+                    Long-term maintenance and support to keep your applications running smoothly.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="feature-title">Proven Portfolio</h3>
+                <p class="feature-description">
+                    Real, live client projects demonstrating our capability and commitment to excellence.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3 class="feature-title">Multi-Domain Experience</h3>
+                <p class="feature-description">
+                    Experience across various industries and technology stacks for comprehensive solutions.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services section bg-light" id="services">
+    <div class="container">
+        <div class="section-header text-center scroll-reveal">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-description">
+                Comprehensive digital solutions tailored to your business needs
+            </p>
+        </div>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card scroll-reveal shimmer-effect shadow-hover">
+                <div class="service-icon icon-bounce">
+                    <i class="{{ service.icon|default:'fas fa-code' }}"></i>
+                </div>
+                <h3 class="service-title">{{ service.title }}</h3>
+                <p class="service-description">{{ service.short_description }}</p>
+                <a href="{% url 'QbixSolutions:service_detail' service.slug %}" class="service-link">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            {% empty %}
+            <!-- Default Services if no database entries -->
+            <div class="service-card scroll-reveal shimmer-effect shadow-hover">
+                <div class="service-icon icon-bounce">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="service-title">Web Development</h3>
+                <p class="service-description">Custom websites and web applications built with modern frameworks and responsive design.</p>
+                <a href="{% url 'QbixSolutions:services' %}" class="service-link">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="service-card scroll-reveal shimmer-effect shadow-hover">
+                <div class="service-icon icon-bounce">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="service-title">Mobile App Development</h3>
+                <p class="service-description">Native and cross-platform mobile applications for iOS and Android devices.</p>
+                <a href="{% url 'QbixSolutions:services' %}" class="service-link">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="service-card scroll-reveal shimmer-effect shadow-hover">
+                <div class="service-icon icon-bounce">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 class="service-title">SaaS Solutions</h3>
+                <p class="service-description">Scalable cloud-based software solutions with subscription models and multi-tenancy.</p>
+                <a href="{% url 'QbixSolutions:services' %}" class="service-link">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center" style="margin-top: 3rem;">
+            <a href="{% url 'QbixSolutions:services' %}" class="btn btn-primary ripple-effect">View All Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner with Profile -->
+<section class="cta-banner-section">
+    <div class="container">
+        <div class="cta-banner">
+            <div class="cta-profile">
+                <img src="{% static 'images/image.webp' %}" alt="Qbix Solutions Expert" class="cta-profile-image">
+            </div>
+            <div class="cta-content">
+                <h3 class="cta-title">Want to learn more?</h3>
+            </div>
+            <div class="cta-action">
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-cta">See our plans</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section - Auto Scroll Slider -->
+<section class="portfolio-slider-section" id="portfolio">
+    <div class="container">
+        <div class="section-header text-center scroll-reveal">
+            <h2 class="section-title">Our Portfolio</h2>
+            <p class="section-description">
+                Showcasing our best work and successful projects
+            </p>
+        </div>
+    </div>
+    <div class="portfolio-slider-container">
+        <button class="portfolio-nav portfolio-nav-prev" id="portfolioPrev" aria-label="Previous project">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="portfolio-nav portfolio-nav-next" id="portfolioNext" aria-label="Next project">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="portfolio-slider-wrapper">
+            <div class="portfolio-slider-track" id="portfolioSlider">
+            {% for item in portfolio_items %}
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
+                    {% else %}
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">{{ item.title }}</h4>
+                    <span class="portfolio-slide-category">{{ item.category }}</span>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Sample items if no portfolio exists -->
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">E-commerce Platform</h4>
+                    <span class="portfolio-slide-category">Web Development</span>
+                </div>
+            </div>
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">Mobile App</h4>
+                    <span class="portfolio-slide-category">App Development</span>
+                </div>
+            </div>
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">Analytics Dashboard</h4>
+                    <span class="portfolio-slide-category">SaaS Platform</span>
+                </div>
+            </div>
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">Learning Management</h4>
+                    <span class="portfolio-slide-category">Education Tech</span>
+                </div>
+            </div>
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">Hotel Booking System</h4>
+                    <span class="portfolio-slide-category">Booking Platform</span>
+                </div>
+            </div>
+            <div class="portfolio-slide-item">
+                <div class="portfolio-slide-image">
+                    <div class="portfolio-slide-placeholder">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+                <div class="portfolio-slide-content">
+                    <h4 class="portfolio-slide-title">Healthcare Portal</h4>
+                    <span class="portfolio-slide-category">Healthcare Tech</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-center" style="margin-top: 3rem;">
+            <a href="{% url 'QbixSolutions:portfolio' %}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials section bg-light" id="testimonials">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-description">
+                Don't just take our word for it - hear from our satisfied clients
+            </p>
+        </div>
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    {% for i in "12345"|slice:":"|slice:testimonial.rating %}
+                    <i class="fas fa-star"></i>
+                    {% endfor %}
+                </div>
+                <p class="testimonial-text">"{{ testimonial.testimonial }}"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        {% if testimonial.image %}
+                        <img src="{{ testimonial.image.url }}" alt="{{ testimonial.client_name }}">
+                        {% else %}
+                        <i class="fas fa-user"></i>
+                        {% endif %}
+                    </div>
+                    <div class="author-info">
+                        <h4 class="author-name">{{ testimonial.client_name }}</h4>
+                        <p class="author-position">{{ testimonial.position }}, {{ testimonial.company }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center" style="grid-column: 1/-1; color: #6b7280; padding: 2rem;">No testimonials available yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section class="blog section" id="blog">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Latest from Our Blog</h2>
+            <p class="section-description">
+                Insights, tips, and industry news to keep you informed
+            </p>
+        </div>
+        <div class="blog-grid">
+            {% for post in blog_posts %}
+            <article class="blog-card">
+                <div class="blog-image">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
+                    {% else %}
+                    <div class="blog-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">{{ post.category }}</span>
+                        <span class="blog-date">{{ post.published_date|date:"M d, Y" }}</span>
+                    </div>
+                    <h3 class="blog-title">
+                        <a href="{% url 'QbixSolutions:blog_detail' post.slug %}">{{ post.title }}</a>
+                    </h3>
+                    <p class="blog-excerpt">{{ post.excerpt }}</p>
+                    <a href="{% url 'QbixSolutions:blog_detail' post.slug %}" class="blog-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% empty %}
+            <p class="text-center" style="grid-column: 1/-1; color: #6b7280; padding: 2rem;">No blog posts available yet. Check back soon!</p>
+            {% endfor %}
+        </div>
+        <div class="text-center" style="margin-top: 3rem;">
+            <a href="{% url 'QbixSolutions:blog' %}" class="btn btn-primary">View All Posts</a>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section - SEO Optimized -->
+<section class="faq-section section" id="faq">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-description">
+                Get answers to common questions about our web development services, pricing, and process
+            </p>
+        </div>
+
+        <div class="faq-container">
+            <!-- General Questions -->
+            <div class="faq-category">
+                <h3>General Questions</h3>
+                
+                <!-- Initially Visible FAQs -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What services does Qbix Solutions offer?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer comprehensive web development services for clients in India and internationally:</p>
+                        <ul>
+                            <li><strong>Custom Website Development</strong> - Responsive, SEO-optimized websites tailored to your brand</li>
+                            <li><strong>Django/Python Web Applications</strong> - Scalable backend systems and complex web apps</li>
+                            <li><strong>SaaS Platform Development</strong> - Multi-tenant cloud applications with subscription management</li>
+                            <li><strong>E-commerce Development</strong> - Complete online stores with payment gateway integration</li>
+                            <li><strong>Mobile App Development</strong> - iOS and Android applications</li>
+                            <li><strong>UI/UX Design Services</strong> - User-centered design for optimal experience</li>
+                            <li><strong>SEO-Ready Website Setup</strong> - Search engine optimized from day one</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you serve international clients or only India?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We serve both <strong>Indian and international clients</strong> across multiple time zones. Our team has successfully delivered 50+ projects for clients in India, USA, UK, Australia, and other countries. We use modern collaboration tools (Slack, Zoom, Jira) to ensure smooth communication regardless of location.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How much does it cost to develop a website with Qbix Solutions?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our pricing is competitive and transparent. Approximate ranges:</p>
+                        <ul>
+                            <li><strong>Basic Website</strong> - ₹20,000 - ₹50,000 ($250 - $600)</li>
+                            <li><strong>Business Website</strong> - ₹50,000 - ₹1,50,000 ($600 - $1,800)</li>
+                            <li><strong>E-commerce Platform</strong> - ₹1,00,000 - ₹3,00,000 ($1,200 - $3,600)</li>
+                            <li><strong>Custom Django Web App</strong> - ₹2,00,000 - ₹6,00,000 ($2,400 - $7,200)</li>
+                            <li><strong>SaaS Platform</strong> - ₹4,00,000 - ₹15,00,000+ ($4,800 - $18,000+)</li>
+                            <li><strong>Mobile App Development</strong> - ₹2,50,000 - ₹8,00,000 ($3,000 - $9,600)</li>
+                        </ul>
+                        <p>Final pricing depends on features, complexity, and timeline. Contact us for a detailed, no-obligation quote.</p>
+                    </div>
+                </div>
+
+                <!-- Hidden FAQs - Show on click -->
+                <div class="faq-hidden-items" style="display: none;">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Why choose Qbix Solutions over other web development companies in India?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our unique advantages:</p>
+                        <ul>
+                            <li><strong>Fastest Delivery</strong> - We deliver projects 30-40% faster than industry average without compromising quality</li>
+                            <li><strong>Better Pricing</strong> - Competitive rates with transparent pricing, no hidden costs</li>
+                            <li><strong>Expert Technical Team</strong> - Specialized in Django, Python, React, Node.js with 5+ years experience</li>
+                            <li><strong>Scalable Code Quality</strong> - Clean, maintainable code following industry best practices</li>
+                            <li><strong>International Experience</strong> - Successfully delivered global projects with cultural understanding</li>
+                            <li><strong>Proven Track Record</strong> - 50+ completed projects, 30+ satisfied clients worldwide</li>
+                            <li><strong>Long-term Support</strong> - 3 months free post-launch support + affordable maintenance packages</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Who are your typical clients - startups, SMBs, or enterprises?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We work with businesses of all sizes:</p>
+                        <ul>
+                            <li><strong>Startups</strong> - MVP development, rapid prototyping, cost-effective solutions</li>
+                            <li><strong>Small & Medium Businesses</strong> - Custom websites, e-commerce stores, business automation</li>
+                            <li><strong>Large Enterprises</strong> - Complex SaaS platforms, system integrations, scalable architectures</li>
+                        </ul>
+                        <p>We serve all industries including technology, e-commerce, education, healthcare, finance, and more.</p>
+                    </div>
+                </div>
+
+            <!-- Pricing & Payment -->
+            <div class="faq-category">
+                <h3>Pricing & Payment</h3>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How much does it cost to develop a website with Qbix Solutions?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our pricing is competitive and transparent. Approximate ranges:</p>
+                        <ul>
+                            <li><strong>Basic Website</strong> - ₹20,000 - ₹50,000 ($250 - $600)</li>
+                            <li><strong>Business Website</strong> - ₹50,000 - ₹1,50,000 ($600 - $1,800)</li>
+                            <li><strong>E-commerce Platform</strong> - ₹1,00,000 - ₹3,00,000 ($1,200 - $3,600)</li>
+                            <li><strong>Custom Django Web App</strong> - ₹2,00,000 - ₹6,00,000 ($2,400 - $7,200)</li>
+                            <li><strong>SaaS Platform</strong> - ₹4,00,000 - ₹15,00,000+ ($4,800 - $18,000+)</li>
+                            <li><strong>Mobile App Development</strong> - ₹2,50,000 - ₹8,00,000 ($3,000 - $9,600)</li>
+                        </ul>
+                        <p>Final pricing depends on features, complexity, and timeline. Contact us for a detailed, no-obligation quote.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What are your payment terms? Do you offer installment options?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we offer flexible milestone-based payment terms:</p>
+                        <ul>
+                            <li><strong>30% Advance</strong> - To initiate project and begin design/planning</li>
+                            <li><strong>40% Midpoint</strong> - Upon design approval and development progress</li>
+                            <li><strong>30% Final</strong> - Upon project completion and delivery</li>
+                        </ul>
+                        <p>For larger projects (₹5 lakh+), we can customize payment schedules with more milestones. We accept bank transfers, UPI, PayPal, and international wire transfers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is Qbix Solutions affordable compared to other web development companies?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! We offer the <strong>best value for money</strong> in the Indian web development market. Our pricing is 20-30% more competitive than similar quality agencies, and we deliver faster. Unlike freelancers, you get a professional team, project management, quality assurance, and long-term support. No hidden costs - what we quote is what you pay.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline & Process -->
+            <div class="faq-category">
+                <h3>Timeline & Development Process</h3>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How long does it take to develop a website or web application?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We pride ourselves on <strong>fast delivery</strong>. Typical timelines:</p>
+                        <ul>
+                            <li><strong>Basic Website</strong> - 1-2 weeks</li>
+                            <li><strong>Business Website</strong> - 2-4 weeks</li>
+                            <li><strong>E-commerce Platform</strong> - 4-8 weeks</li>
+                            <li><strong>Custom Django Web App</strong> - 6-12 weeks</li>
+                            <li><strong>SaaS Platform</strong> - 3-6 months</li>
+                            <li><strong>Mobile App</strong> - 8-16 weeks</li>
+                        </ul>
+                        <p>We deliver 30-40% faster than industry standards through agile methodology, experienced developers, and efficient project management. Rush projects available with express delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is your development process from start to finish?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our proven 6-step process ensures quality and transparency:</p>
+                        <ol>
+                            <li><strong>Discovery & Planning</strong> - Understand your requirements, goals, and target audience</li>
+                            <li><strong>Design & Wireframing</strong> - Create UI/UX designs and get your approval</li>
+                            <li><strong>Development</strong> - Code your application using best practices and latest technologies</li>
+                            <li><strong>Testing & QA</strong> - Rigorous testing for bugs, performance, and security</li>
+                            <li><strong>Deployment</strong> - Launch your application on production servers</li>
+                            <li><strong>Support & Maintenance</strong> - 3 months free support + optional maintenance packages</li>
+                        </ol>
+                        <p>You'll receive regular updates and have full visibility into progress through project management tools.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can you handle urgent or rush projects with tight deadlines?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We specialize in <strong>fast delivery</strong> and can accommodate rush projects. Depending on scope, we can deliver websites in as little as 1 week and web applications in 3-4 weeks. Express delivery may include a 15-20% premium to prioritize your project and allocate additional resources. Contact us to discuss your deadline requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical & Technology -->
+            <div class="faq-category">
+                <h3>Technology & Technical Questions</h3>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What technologies and programming languages do you use?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're experts in modern web technologies:</p>
+                        <ul>
+                            <li><strong>Backend</strong> - Django, Python, Node.js, REST APIs, GraphQL</li>
+                            <li><strong>Frontend</strong> - React, Vue.js, Next.js, HTML5, CSS3, JavaScript (ES6+)</li>
+                            <li><strong>Mobile</strong> - React Native, Flutter, Native iOS/Android</li>
+                            <li><strong>Database</strong> - PostgreSQL, MySQL, MongoDB, Redis</li>
+                            <li><strong>Cloud & DevOps</strong> - AWS, Google Cloud, DigitalOcean, Docker, CI/CD</li>
+                            <li><strong>CMS</strong> - Custom Django CMS, Wagtail, Headless CMS</li>
+                        </ul>
+                        <p>We select the best technology stack based on your project requirements, scalability needs, and budget.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Are Django and Python good choices for web development?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! <strong>Django and Python</strong> are excellent for:</p>
+                        <ul>
+                            <li><strong>Rapid Development</strong> - Django's "batteries included" approach speeds up development</li>
+                            <li><strong>Security</strong> - Built-in protection against SQL injection, XSS, CSRF, and other vulnerabilities</li>
+                            <li><strong>Scalability</strong> - Powers Instagram, Pinterest, Spotify, and other high-traffic sites</li>
+                            <li><strong>Versatility</strong> - Perfect for SaaS, e-commerce, APIs, data-heavy applications</li>
+                            <li><strong>Cost-Effective</strong> - Open-source with huge community support</li>
+                        </ul>
+                        <p>As <strong>expert Django developers in India</strong>, we leverage these advantages to deliver superior solutions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Will my website be mobile-responsive and SEO-optimized?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, guaranteed! Every website we build is:</p>
+                        <ul>
+                            <li><strong>100% Mobile Responsive</strong> - Perfect display on all devices (mobile, tablet, desktop)</li>
+                            <li><strong>SEO-Ready from Day 1</strong> - Optimized meta tags, structured data, fast loading, clean URLs</li>
+                            <li><strong>Performance Optimized</strong> - Fast page loads, image optimization, code minification</li>
+                            <li><strong>Accessibility Compliant</strong> - WCAG guidelines for users with disabilities</li>
+                            <li><strong>Browser Compatible</strong> - Works flawlessly on Chrome, Firefox, Safari, Edge</li>
+                        </ul>
+                        <p>We also offer advanced SEO services including keyword research, content optimization, and link building.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you ensure website security and data protection?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Security is our top priority. We implement:</p>
+                        <ul>
+                            <li><strong>SSL/HTTPS Encryption</strong> - Secure data transmission</li>
+                            <li><strong>Input Validation</strong> - Protection against SQL injection, XSS attacks</li>
+                            <li><strong>Authentication & Authorization</strong> - Secure user access controls</li>
+                            <li><strong>Regular Security Updates</strong> - Keep all dependencies and frameworks updated</li>
+                            <li><strong>Data Encryption</strong> - Sensitive data encrypted at rest and in transit</li>
+                            <li><strong>Backup Systems</strong> - Daily automated backups with disaster recovery</li>
+                            <li><strong>Security Audits</strong> - Regular vulnerability assessments</li>
+                        </ul>
+                        <p>We follow OWASP guidelines and industry best practices for maximum security.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support & Maintenance -->
+            <div class="faq-category">
+                <h3>Support & Maintenance</h3>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you provide post-launch support and maintenance?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We provide comprehensive support:</p>
+                        <ul>
+                            <li><strong>3 Months Free Support</strong> - Includes bug fixes, minor updates, technical assistance</li>
+                            <li><strong>Maintenance Packages</strong> - Starting from ₹5,000/month ($60/month) after free period</li>
+                            <li><strong>24/7 Emergency Support</strong> - Available for critical issues (premium plans)</li>
+                            <li><strong>Regular Updates</strong> - Security patches, performance optimization, feature enhancements</li>
+                            <li><strong>Hosting Management</strong> - Server monitoring, backups, uptime guarantee</li>
+                        </ul>
+                        <p>We're committed to long-term partnerships and keeping your application running smoothly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What happens if something breaks after launch?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>During the <strong>3-month free support period</strong>, we fix all bugs and issues at no extra cost. After that, you can:</p>
+                        <ul>
+                            <li>Subscribe to our monthly maintenance package (₹5,000 - ₹25,000/month based on complexity)</li>
+                            <li>Request one-time fixes on hourly basis (₹2,000 - ₹4,000/hour depending on urgency)</li>
+                            <li>Opt for annual maintenance contracts with discounted rates</li>
+                        </ul>
+                        <p>We guarantee rapid response times and prioritize critical issues affecting your business operations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I update website content myself or do I need to contact you?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We provide <strong>user-friendly admin panels</strong> that allow you to:</p>
+                        <ul>
+                            <li>Update text content, images, and videos</li>
+                            <li>Add/edit blog posts and news articles</li>
+                            <li>Manage products and pricing (e-commerce)</li>
+                            <li>View analytics and user data</li>
+                        </ul>
+                        <p>We also provide training videos and documentation. For complex changes (design, functionality), we're available for quick updates at affordable rates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="faq-category">
+                <h3>Getting Started</h3>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I get started? What's the first step?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Getting started is simple:</p>
+                        <ol>
+                            <li><strong>Contact Us</strong> - Fill the consultation form below or call +91-90165-92958</li>
+                            <li><strong>Free Consultation</strong> - We'll discuss your requirements, goals, and budget (30-60 mins)</li>
+                            <li><strong>Proposal & Quote</strong> - Receive detailed proposal with timeline and pricing within 24 hours</li>
+                            <li><strong>Agreement</strong> - Sign contract and make 30% advance payment</li>
+                            <li><strong>Project Kickoff</strong> - We start design and development immediately!</li>
+                        </ol>
+                        <p>No obligation, no pressure - just honest advice to help you make the right decision.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What information do I need to provide to get a quote?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>To provide an accurate quote, we need:</p>
+                        <ul>
+                            <li>Brief description of your project and goals</li>
+                            <li>Target audience and industry</li>
+                            <li>Key features and functionality required</li>
+                            <li>Design preferences (if any)</li>
+                            <li>Timeline expectations</li>
+                            <li>Budget range</li>
+                            <li>Reference websites you like (optional)</li>
+                        </ul>
+                        <p>Don't worry if you don't have all details - we'll help you define requirements during the free consultation!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you sign NDAs for confidential projects?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! We understand the importance of confidentiality. We're happy to sign:</p>
+                        <ul>
+                            <li><strong>Non-Disclosure Agreements (NDA)</strong> - To protect your business idea and data</li>
+                            <li><strong>Intellectual Property Agreements</strong> - You own all rights to the final deliverables</li>
+                            <li><strong>Custom Contracts</strong> - We can work with your legal team's documents</li>
+                        </ul>
+                        <p>Your trust and project confidentiality are paramount to us.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div><!-- End of faq-hidden-items -->
+
+        <!-- Show More Button -->
+        <div class="text-center" style="margin-top: 2rem;">
+            <button onclick="toggleAllFaqs()" id="faqToggleBtn" class="btn btn-outline" style="padding: 12px 32px;">
+                <i class="fas fa-chevron-down"></i> Show More FAQs
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- Free Consultation CTA Section -->
+<section class="consultation-cta section" id="consultation">
+    <div class="container">
+        <div class="consultation-content">
+            <div class="consultation-text">
+                <h2 class="consultation-title">Ready to Transform Your Business?</h2>
+                <p class="consultation-description">
+                    Get a free consultation with our experts and discover how we can help you achieve your digital goals.
+                </p>
+            </div>
+            <div class="consultation-form-wrapper">
+                <form method="post" class="consultation-form" id="consultationForm">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            {{ consultation_form.name }}
+                        </div>
+                        <div class="form-group">
+                            {{ consultation_form.email }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            {{ consultation_form.phone }}
+                        </div>
+                        <div class="form-group">
+                            {{ consultation_form.service }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ consultation_form.message }}
+                    </div>
+                    <button type="submit" name="consultation_submit" class="btn btn-primary btn-lg btn-block">
+                        Request Free Consultation
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Schema.org Structured Data for Google Rich Snippets -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What services does Qbix Solutions offer?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We offer Custom Website Development, Django/Python Web Applications, SaaS Platform Development, E-commerce Development, Mobile App Development, UI/UX Design Services, and SEO-Ready Website Setup for clients in India and internationally."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Do you serve international clients or only India?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! We serve both Indian and international clients across multiple time zones. Our team has successfully delivered 50+ projects for clients in India, USA, UK, Australia, and other countries."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Why choose Qbix Solutions over other web development companies in India?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We deliver projects 30-40% faster than industry average, offer competitive pricing with no hidden costs, have expert Django/Python developers with 5+ years experience, write scalable quality code, have international project experience, 50+ completed projects, and provide 3 months free post-launch support."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How much does it cost to develop a website with Qbix Solutions?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Basic Website: ₹20,000-₹50,000, Business Website: ₹50,000-₹1,50,000, E-commerce: ₹1,00,000-₹3,00,000, Custom Django Web App: ₹2,00,000-₹6,00,000, SaaS Platform: ₹4,00,000-₹15,00,000+, Mobile App: ₹2,50,000-₹8,00,000. Final pricing depends on features and complexity."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What are your payment terms?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We offer flexible milestone-based payments: 30% advance to initiate project, 40% at midpoint upon design approval and development progress, 30% final upon project completion. For larger projects, we can customize payment schedules."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How long does it take to develop a website?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Basic Website: 1-2 weeks, Business Website: 2-4 weeks, E-commerce: 4-8 weeks, Custom Django Web App: 6-12 weeks, SaaS Platform: 3-6 months, Mobile App: 8-16 weeks. We deliver 30-40% faster than industry standards."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What technologies do you use for web development?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Backend: Django, Python, Node.js, REST APIs. Frontend: React, Vue.js, Next.js, HTML5, CSS3, JavaScript. Mobile: React Native, Flutter. Database: PostgreSQL, MySQL, MongoDB. Cloud: AWS, Google Cloud, DigitalOcean, Docker."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Are Django and Python good for web development?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely! Django and Python offer rapid development, built-in security, excellent scalability (powers Instagram, Pinterest, Spotify), versatility for SaaS and e-commerce, and are cost-effective being open-source."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Will my website be mobile-responsive and SEO-optimized?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, guaranteed! Every website is 100% mobile responsive, SEO-ready from day 1 with optimized meta tags and structured data, performance optimized with fast page loads, accessibility compliant, and browser compatible."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Do you provide post-launch support?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! We provide 3 months free support including bug fixes and minor updates. After that, maintenance packages start from ₹5,000/month with 24/7 emergency support, regular updates, and hosting management."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I get started with Qbix Solutions?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Contact us by filling the consultation form or calling +91-90165-92958. We'll provide a free consultation, then send a detailed proposal with timeline and pricing within 24 hours. After agreement, we start immediately!"
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is Qbix Solutions affordable compared to other companies?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! We offer the best value for money with pricing 20-30% more competitive than similar quality agencies, faster delivery, professional team support, and no hidden costs."
+            }
+        }
+    ]
+}
+</script>
+
+<script>
+// Toggle Show More/Less FAQs
+function toggleAllFaqs() {
+    const hiddenItems = document.querySelector('.faq-hidden-items');
+    const toggleBtn = document.getElementById('faqToggleBtn');
+    
+    if (hiddenItems && toggleBtn) {
+        if (hiddenItems.style.display === 'none' || hiddenItems.style.display === '') {
+            hiddenItems.style.display = 'block';
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less FAQs';
+            
+            // Smooth scroll to hidden FAQs
+            setTimeout(() => {
+                hiddenItems.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        } else {
+            hiddenItems.style.display = 'none';
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show More FAQs';
+            
+            // Scroll back to top of FAQ section
+            const faqSection = document.querySelector('.faq-section');
+            if (faqSection) {
+                const offset = 100;
+                const elementPosition = faqSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

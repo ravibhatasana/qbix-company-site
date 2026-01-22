@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - Qbix Solutions Blog{% endblock %}
+
+{% block meta_description %}{{ post.excerpt }}{% endblock %}
+
+{% block meta_keywords %}{{ post.category }}, web development blog, {{ post.author }}, Qbix Solutions, technology blog{% endblock %}
+
+{% block extra_css %}
+<!-- Blog Styles -->
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+<!-- Blog Post Schema for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ post.title }}",
+    "description": "{{ post.excerpt }}",
+    "author": {
+        "@type": "Person",
+        "@id": "https://qbixsolution.com/#founder",
+        "name": "{{ post.author }}",
+        "jobTitle": "Founder & CTO",
+        "url": "https://qbixsolution.com/about/",
+        "sameAs": [
+            "https://linkedin.com/in/ravi-bhatasana-179273340"
+        ]
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Qbix Solutions",
+        "founder": {
+            "@type": "Person",
+            "name": "Ravi Bhatasana"
+        },
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://qbixsolution.com{% static 'images/QbixSolutionsLogo01.png' %}"
+        }
+    },
+    "datePublished": "{{ post.published_date|date:'Y-m-d' }}",
+    "dateModified": "{{ post.published_date|date:'Y-m-d' }}",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://qbixsolution.com/blog/{{ post.slug }}/"
+    }
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://qbixsolution.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://qbixsolution.com/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ post.title }}",
+            "item": "https://qbixsolution.com/blog/{{ post.slug }}/"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Blog Detail Header -->
+<section class="blog-detail-header">
+    <div class="container">
+        <div class="blog-content-wrapper">
+            <div class="back-button-wrapper">
+                <a href="{% url 'QbixSolutions:blog' %}" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+            </div>
+            <div class="blog-meta">
+                <div class="blog-meta-item">
+                    <i class="fas fa-user"></i>
+                    <span>{{ post.author }}</span>
+                </div>
+                <div class="blog-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ post.published_date|date:"F d, Y" }}</span>
+                </div>
+                <div class="blog-meta-item">
+                    <i class="fas fa-folder"></i>
+                    <span>{{ post.category }}</span>
+                </div>
+            </div>
+            <h1 class="blog-detail-title">{{ post.title }}</h1>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Content -->
+<section class="section">
+    <div class="container">
+        <div class="blog-content-wrapper">
+            <div class="blog-detail-content">
+                {{ post.content|linebreaks  }}
+                
+                <!-- Share Buttons -->
+                <div class="blog-share-buttons">
+                    <strong>Share this post:</strong>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-button share-facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}" target="_blank" class="share-button share-twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ post.title }}" target="_blank" class="share-button share-linkedin">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Author Box -->
+            <div class="blog-author-box">
+                <div class="author-avatar">
+                    {{ post.author|first|upper }}
+                </div>
+                <div class="author-info">
+                    <h4>Written by {{ post.author }}</h4>
+                    {% if post.author == "Ravi Bhatasana" %}
+                    <p><strong>Ravi Bhatasana</strong> is the Founder, CTO, and Full-Stack Developer at <strong>Qbix Solutions</strong>. Expert in Django, Python, web development, and SaaS platforms. Passionate about building scalable solutions and sharing knowledge with the developer community.</p>
+                    {% else %}
+                    <p>Expert web developer passionate about creating innovative digital solutions and sharing knowledge with the community.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            {% if related_posts %}
+            <div class="related-posts-section">
+                <h2 class="section-title">Related Articles</h2>
+                <div class="related-posts-grid">
+                    {% for related in related_posts %}
+                    <div class="related-post-card">
+                        <div class="related-post-image">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                        <div class="related-post-content">
+                            <a href="{% url 'QbixSolutions:blog_detail' related.slug %}">
+                                <h3 class="related-post-title">{{ related.title }}</h3>
+                            </a>
+                            <p class="related-post-excerpt">{{ related.excerpt|truncatewords:20 }}</p>
+                            <div class="related-post-meta">
+                                <span><i class="fas fa-calendar-alt"></i> {{ related.published_date|date:"M d, Y" }}</span>
+                                <span><i class="fas fa-user"></i> {{ related.author }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- CTA -->
+            <div class="faq-cta" style="margin-top: 4rem;">
+                <h3>Ready to Start Your Project?</h3>
+                <p>Let's discuss how we can help transform your business with innovative digital solutions</p>
+                <div class="faq-cta-buttons">
+                    <a href="tel:+919016592958" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call +91 9016592958
+                    </a>
+                    <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Send Message
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

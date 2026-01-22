@@ -1,0 +1,703 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ portfolio_item.title }} - Qbix Solutions Portfolio{% endblock %}
+
+{% block meta_description %}{{ portfolio_item.description|truncatewords:30 }}{% endblock %}
+
+{% block meta_keywords %}{{ portfolio_item.get_category_display }}, {{ portfolio_item.technologies }}, web development, Qbix Solutions, portfolio{% endblock %}
+
+{% block extra_css %}
+<!-- Portfolio Styles -->
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+
+<style>
+/* Portfolio Detail Styles */
+.portfolio-detail-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 6rem 0 4rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-detail-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+.portfolio-breadcrumb {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.portfolio-breadcrumb a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.portfolio-breadcrumb a:hover {
+    color: white;
+}
+
+.portfolio-breadcrumb span {
+    margin: 0 0.5rem;
+    opacity: 0.6;
+}
+
+.portfolio-detail-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-detail-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta-item i {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.portfolio-detail-image {
+    margin: -3rem 0 3rem;
+    position: relative;
+    z-index: 10;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-detail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-detail-image .placeholder-image {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: white;
+}
+
+.portfolio-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.portfolio-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 3rem;
+}
+
+.portfolio-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.info-card {
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid #3b82f6;
+}
+
+.info-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.info-card-content {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tech-tag {
+    background: white;
+    color: #3b82f6;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 2px solid #3b82f6;
+}
+
+.view-project-section {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    padding: 3rem;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    margin: 3rem 0;
+}
+
+.view-project-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.view-project-section p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+.view-project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    color: #3b82f6;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.view-project-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    color: #3b82f6;
+}
+
+.view-project-btn i {
+    font-size: 1.25rem;
+}
+
+.related-projects-section {
+    margin-top: 5rem;
+}
+
+.related-projects-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.related-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.related-project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.related-project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.related-project-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.related-project-content {
+    padding: 1.5rem;
+}
+
+.related-project-category {
+    display: inline-block;
+    background: #dbeafe;
+    color: #3b82f6;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.related-project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+
+.related-project-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.related-project-title a:hover {
+    color: #3b82f6;
+}
+
+.related-project-description {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.related-project-link {
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s;
+}
+
+.related-project-link:hover {
+    gap: 0.75rem;
+}
+
+/* Back Button Styles */
+.back-button-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-button i {
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover i {
+    transform: translateX(-3px);
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 1024px) {
+    .portfolio-detail-hero {
+        padding: 4rem 0 3rem;
+    }
+    
+    .portfolio-info-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-detail-hero {
+        padding: 3rem 0 2rem;
+    }
+    
+    .back-button {
+        font-size: 0.875rem;
+        padding: 0.65rem 1.25rem;
+    }
+    
+    .portfolio-detail-title {
+        font-size: 1.75rem;
+    }
+    
+    .portfolio-detail-meta {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+    
+    .portfolio-detail-image {
+        margin: -2rem 0 2rem;
+        border-radius: 12px;
+    }
+    
+    .portfolio-detail-image .placeholder-image {
+        height: 300px;
+        font-size: 3rem;
+    }
+    
+    .portfolio-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .tech-tags {
+        gap: 0.5rem;
+    }
+    
+    .tech-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .view-project-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .view-project-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .view-project-section p {
+        font-size: 1rem;
+    }
+    
+    .view-project-btn {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .related-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-detail-hero {
+        padding: 2.5rem 0 2rem;
+    }
+    
+    .back-button {
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .portfolio-breadcrumb {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .portfolio-detail-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .portfolio-detail-meta {
+        font-size: 0.85rem;
+        gap: 0.5rem;
+    }
+    
+    .meta-item i {
+        font-size: 1rem;
+    }
+    
+    .portfolio-detail-image {
+        margin: -1.5rem 0 1.5rem;
+        border-radius: 8px;
+    }
+    
+    .portfolio-detail-image .placeholder-image {
+        height: 250px;
+        font-size: 2.5rem;
+    }
+    
+    .portfolio-content {
+        padding: 0;
+    }
+    
+    .portfolio-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .info-card {
+        padding: 1.25rem;
+    }
+    
+    .info-card h3 {
+        font-size: 1rem;
+    }
+    
+    .tech-tag {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+    }
+    
+    .view-project-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .view-project-section h2 {
+        font-size: 1.25rem;
+    }
+    
+    .view-project-section p {
+        font-size: 0.95rem;
+    }
+    
+    .view-project-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .related-projects-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .related-project-content {
+        padding: 1.25rem;
+    }
+    
+    .related-project-title {
+        font-size: 1.125rem;
+    }
+}
+</style>
+
+<!-- Project Schema for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{{ portfolio_item.title }}",
+    "description": "{{ portfolio_item.description }}",
+    "creator": {
+        "@type": "Organization",
+        "name": "Qbix Solutions"
+    },
+    "dateCreated": "{{ portfolio_item.completion_date|date:'Y-m-d' }}",
+    "genre": "{{ portfolio_item.category }}",
+    "url": "{% if portfolio_item.project_url %}{{ portfolio_item.project_url }}{% endif %}"
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://qbixsolution.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Portfolio",
+            "item": "https://qbixsolution.com/portfolio/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ portfolio_item.title }}",
+            "item": "https://qbixsolution.com/portfolio/{{ portfolio_item.slug }}/"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Portfolio Detail Hero -->
+<section class="portfolio-detail-hero">
+    <div class="container">
+        <div class="back-button-wrapper">
+            <a href="{% url 'QbixSolutions:portfolio' %}" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+        <div class="portfolio-breadcrumb">
+            <a href="{% url 'QbixSolutions:home' %}">Home</a>
+            <span>/</span>
+            <a href="{% url 'QbixSolutions:portfolio' %}">Portfolio</a>
+            <span>/</span>
+            <span>{{ portfolio_item.title }}</span>
+        </div>
+        <h1 class="portfolio-detail-title">{{ portfolio_item.title }}</h1>
+        <div class="portfolio-detail-meta">
+            <div class="meta-item">
+                <i class="fas fa-folder"></i>
+                <span>{{ portfolio_item.get_category_display }}</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>{{ portfolio_item.completion_date|date:"F Y" }}</span>
+            </div>
+            {% if portfolio_item.featured %}
+            <div class="meta-item">
+                <i class="fas fa-star"></i>
+                <span>Featured Project</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Image -->
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+        <div class="portfolio-detail-image">
+            {% if portfolio_item.image %}
+            <img src="{{ portfolio_item.image.url }}" alt="{{ portfolio_item.title }}">
+            {% else %}
+            <div class="placeholder-image">
+                <i class="fas fa-image"></i>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Content -->
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+        <div class="portfolio-content">
+            <p class="portfolio-description">{{ portfolio_item.description }}</p>
+            
+            <div class="portfolio-info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-tools"></i> Technologies Used</h3>
+                    <div class="info-card-content">
+                        <div class="tech-tags">
+                            {% for tech in portfolio_item.get_technologies_list %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-list-check"></i> Project Category</h3>
+                    <div class="info-card-content">
+                        <p>{{ portfolio_item.get_category_display }}</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-clock"></i> Completion Date</h3>
+                    <div class="info-card-content">
+                        <p>{{ portfolio_item.completion_date|date:"F d, Y" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Live Project Section -->
+            {% if portfolio_item.project_url %}
+            <div class="view-project-section">
+                <h2>🚀 View Live Project Demo</h2>
+                <p>Experience this project in action! Click below to visit the live website.</p>
+                <a href="{{ portfolio_item.project_url }}" target="_blank" rel="noopener noreferrer" class="view-project-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    Launch Live Demo
+                </a>
+            </div>
+            {% endif %}
+
+            <!-- Related Projects -->
+            {% if related_projects %}
+            <div class="related-projects-section">
+                <h2>Related Projects</h2>
+                <div class="related-projects-grid">
+                    {% for project in related_projects %}
+                    <div class="related-project-card">
+                        <div class="related-project-image">
+                            {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                            <i class="fas fa-code"></i>
+                            {% endif %}
+                        </div>
+                        <div class="related-project-content">
+                            <span class="related-project-category">{{ project.get_category_display }}</span>
+                            <h3 class="related-project-title">
+                                <a href="{% url 'QbixSolutions:portfolio_detail' project.slug %}">{{ project.title }}</a>
+                            </h3>
+                            <p class="related-project-description">{{ project.description|truncatewords:15 }}</p>
+                            <a href="{% url 'QbixSolutions:portfolio_detail' project.slug %}" class="related-project-link">
+                                View Project <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- CTA Section -->
+            <div class="faq-cta" style="margin-top: 4rem;">
+                <h3>Like What You See?</h3>
+                <p>Let's collaborate to create something amazing for your business</p>
+                <div class="faq-cta-buttons">
+                    <a href="tel:+919016592958" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call +91 9016592958
+                    </a>
+                    <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Start Your Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

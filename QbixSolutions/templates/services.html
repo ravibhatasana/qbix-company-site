@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Web Development Services - Django, Python | Qbix Solutions{% endblock %}
+
+{% block meta_description %}Comprehensive web development services: Custom websites, Django/Python apps, SaaS platforms, e-commerce, mobile apps, UI/UX design. Fast delivery, affordable pricing. Serving India & international clients.{% endblock %}
+
+{% block meta_keywords %}web development services India, Django development services, Python web development, SaaS development, e-commerce development, mobile app development, UI/UX design services, custom web application development{% endblock %}
+
+{% block extra_css %}
+<!-- BreadcrumbList Schema for Services Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://qbixsolution.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://qbixsolution.com/services/"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Professional Web Development Services in India - Django, Python, SaaS & More</h1>
+        <p class="page-description">Custom websites, SaaS platforms, e-commerce solutions & mobile apps with fast delivery and affordable pricing</p>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-detail section">
+    <div class="container">
+        <div class="services-detail-grid">
+            {% for service in services %}
+            <div class="service-detail-card">
+                <div class="service-icon-large">
+                    <i class="{{ service.icon|default:'fas fa-code' }}"></i>
+                </div>
+                <h2 class="service-detail-title">{{ service.title }}</h2>
+                <p class="service-detail-description">{{ service.full_description }}</p>
+                <ul class="service-features-list">
+                    {% for feature in service.get_features_list %}
+                    <li><i class="fas fa-check-circle"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-primary">Get Started</a>
+            </div>
+            {% empty %}
+            <!-- Default Services -->
+            <div class="service-detail-card">
+                <div class="service-icon-large">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2 class="service-detail-title">Web Development</h2>
+                <p class="service-detail-description">
+                    Build powerful, responsive websites and web applications that drive business growth. Our expert developers use modern frameworks and best practices to create scalable solutions.
+                </p>
+                <ul class="service-features-list">
+                    <li><i class="fas fa-check-circle"></i> Custom Website Design & Development</li>
+                    <li><i class="fas fa-check-circle"></i> E-commerce Solutions</li>
+                    <li><i class="fas fa-check-circle"></i> Progressive Web Apps (PWA)</li>
+                    <li><i class="fas fa-check-circle"></i> API Development & Integration</li>
+                    <li><i class="fas fa-check-circle"></i> Content Management Systems</li>
+                    <li><i class="fas fa-check-circle"></i> Performance Optimization</li>
+                </ul>
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-primary">Get Started</a>
+            </div>
+            
+            <div class="service-detail-card">
+                <div class="service-icon-large">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2 class="service-detail-title">Mobile App Development</h2>
+                <p class="service-detail-description">
+                    Create engaging mobile experiences for iOS and Android. From native apps to cross-platform solutions, we deliver high-quality mobile applications that users love.
+                </p>
+                <ul class="service-features-list">
+                    <li><i class="fas fa-check-circle"></i> Native iOS & Android Development</li>
+                    <li><i class="fas fa-check-circle"></i> Cross-Platform Development (React Native, Flutter)</li>
+                    <li><i class="fas fa-check-circle"></i> Mobile UI/UX Design</li>
+                    <li><i class="fas fa-check-circle"></i> App Store Optimization</li>
+                    <li><i class="fas fa-check-circle"></i> Push Notifications & Analytics</li>
+                    <li><i class="fas fa-check-circle"></i> Maintenance & Support</li>
+                </ul>
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-primary">Get Started</a>
+            </div>
+            
+            <div class="service-detail-card">
+                <div class="service-icon-large">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h2 class="service-detail-title">SaaS Solutions</h2>
+                <p class="service-detail-description">
+                    Build scalable, cloud-based software that grows with your business. We specialize in multi-tenant SaaS platforms with subscription management and enterprise features.
+                </p>
+                <ul class="service-features-list">
+                    <li><i class="fas fa-check-circle"></i> Multi-Tenant Architecture</li>
+                    <li><i class="fas fa-check-circle"></i> Subscription & Billing Management</li>
+                    <li><i class="fas fa-check-circle"></i> Cloud Infrastructure Setup</li>
+                    <li><i class="fas fa-check-circle"></i> API-First Development</li>
+                    <li><i class="fas fa-check-circle"></i> Security & Compliance</li>
+                    <li><i class="fas fa-check-circle"></i> Analytics & Reporting</li>
+                </ul>
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-primary">Get Started</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process section bg-light">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Our Development Process</h2>
+            <p class="section-description">A proven methodology that delivers results</p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <h3 class="process-title">Discovery</h3>
+                <p class="process-description">We analyze your requirements and define project scope</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <h3 class="process-title">Design</h3>
+                <p class="process-description">Create wireframes and UI/UX designs for approval</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <h3 class="process-title">Development</h3>
+                <p class="process-description">Build your solution with agile methodology</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <h3 class="process-title">Testing</h3>
+                <p class="process-description">Rigorous QA to ensure quality and performance</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">5</div>
+                <h3 class="process-title">Launch</h3>
+                <p class="process-description">Deploy and provide ongoing support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="container">
+        <div class="faq-cta">
+            <h3>Ready to Get Started?</h3>
+            <p>Let's discuss your project and find the perfect solution</p>
+            <div class="faq-cta-buttons">
+                <a href="tel:+919016592958" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call +91 9016592958
+                </a>
+                <a href="{% url 'QbixSolutions:contact' %}" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Send Message
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

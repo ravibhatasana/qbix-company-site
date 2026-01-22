@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Careers - Join Our Web Development Team | Qbix Solutions{% endblock %}
+
+{% block meta_description %}Join Qbix Solutions's growing team. Exciting career opportunities for Django developers, Python developers, UI/UX designers, and web development professionals. Work on cutting-edge projects.{% endblock %}
+
+{% block meta_keywords %}web development jobs India, Django developer jobs, Python developer careers, UI/UX designer jobs, web developer opportunities India, join web development team{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Join Our Team</h1>
+        <p class="page-description">Build your career with innovative projects and talented colleagues</p>
+    </div>
+</section>
+
+<!-- Careers Intro -->
+<section class="careers-intro section">
+    <div class="container">
+        <div class="careers-intro-content">
+            <h2 class="section-title">Why Work With Us?</h2>
+            <p>
+                At Qbix Solutions, we believe that our people are our greatest asset. We foster a culture of innovation, collaboration, and continuous learning. Join our team and work on exciting projects that make a real impact.
+            </p>
+            <div class="careers-benefits">
+                <div class="benefit-item">
+                    <i class="fas fa-laptop-house"></i>
+                    <span>Remote Work Options</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Learning & Development</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Health Benefits</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users"></i>
+                    <span>Collaborative Culture</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Job Listings -->
+<section class="job-listings section bg-light">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Open Positions</h2>
+        </div>
+        
+        <!-- Department Filter -->
+        {% if departments %}
+        <div class="job-filters">
+            <a href="{% url 'QbixSolutions:careers' %}" class="filter-btn {% if not selected_department %}active{% endif %}">All Departments</a>
+            {% for dept in departments %}
+            <a href="?department={{ dept }}" class="filter-btn {% if selected_department == dept %}active{% endif %}">{{ dept }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="job-listings-grid">
+            {% for job in job_listings %}
+            <div class="job-card">
+                <div class="job-header">
+                    <h3 class="job-title">{{ job.title }}</h3>
+                    <span class="job-type">{{ job.get_employment_type_display }}</span>
+                </div>
+                <div class="job-meta">
+                    <span class="job-department"><i class="fas fa-briefcase"></i> {{ job.department }}</span>
+                    <span class="job-location"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</span>
+                    <span class="job-date"><i class="fas fa-calendar"></i> Posted {{ job.posted_date|date:"M d, Y" }}</span>
+                </div>
+                <p class="job-description">{{ job.description|truncatewords:30 }}</p>
+                <a href="{% url 'QbixSolutions:career_apply' job.slug %}" class="btn btn-primary">Apply Now</a>
+            </div>
+            {% empty %}
+            <div class="no-jobs">
+                <i class="fas fa-briefcase"></i>
+                <p>No open positions at the moment. Check back soon or send us your resume at careers@qbixsolution.com</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Culture Section -->
+<section class="company-culture section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Our Culture</h2>
+            <p class="section-description">What makes Qbix Solutions a great place to work</p>
+        </div>
+        <div class="culture-grid">
+            <div class="culture-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Innovation First</h3>
+                <p>We encourage creativity and new ideas. Your voice matters here.</p>
+            </div>
+            <div class="culture-card">
+                <i class="fas fa-balance-scale"></i>
+                <h3>Work-Life Balance</h3>
+                <p>Flexible schedules and remote options to fit your lifestyle.</p>
+            </div>
+            <div class="culture-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Career Growth</h3>
+                <p>Clear career paths with opportunities for advancement and learning.</p>
+            </div>
+            <div class="culture-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Inclusive Environment</h3>
+                <p>Diverse, welcoming team where everyone belongs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
